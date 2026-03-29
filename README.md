@@ -1,4 +1,4 @@
-# Dams in Space — Research Agenda & TODO
+# Dams — Research Agenda & TODO
 
 ---
 
