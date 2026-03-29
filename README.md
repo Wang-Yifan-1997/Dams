@@ -5,34 +5,29 @@
 ## Data Assembly
 
 ### Core Datasets
-| Dataset | Variables | Coverage |
-|---|---|---|
-| Dam registry | Location, year, size, type, function | National + Zhejiang detail |
-| ASIE firm panel | Revenue, TFP, pollution, energy, industry code, location | 1998–2013 |
-| Tax survey / VAT data | Revenue, employment, industry code, location | 2000–2020 |
-| NBS county yearbooks | GDP, employment, investment | 1990–2020 |
-| Nighttime lights | DMSP-OLS / VIIRS | 1992–present |
-| Population census | Population, migration, education | 1982, 1990, 2000, 2010 |
-| Water monitor stations | Water flow, water quality | 1990s–present |
-| 国控断面 | Water quality monitoring | 2000s–present |
-| River network | HydroSHEDS or national | National |
-| Input-output tables | Water intensity, energy intensity by industry | Various years |
-| China IO tables | Industry-level factor shares | 1997–2017 |
+| Dataset | Variables |
+|---|---|
+| Dam registry (6 province + Zhejiang detail) | Location, year, size, type, function |
+| firm panel (ASIE and polluting firms) | Revenue, TFP, pollution, energy, industry code, location |
+| Tax survey | Revenue, employment, industry code, location |
+| county yearbooks | GDP, employment, investment |
+| Nighttime lights | DMSP-OLS / VIIRS |
+| Population census | Population, migration, education |
+| Water monitor stations, 国控断面 etc | Water flow, water quality |
+| River network | HydroSHEDS or national |
+| Flood event data | Global Flood Data |
+| Input-output tables | Water intensity, energy intensity by industry |
 
-### Additional Data to Collect
-- **Dam construction costs**: search infrastructure procurement databases, audit reports, local government gazettes, and World Bank project documents for a subsample. Target large dams post-2000 where disclosure is better
-- **Government procurement data**: follow-up investments in dams (maintenance, upgrades, renewals) — connects to the optimal stopping / Rust (1987) angle
-- **Electricity grid data**: provincial grid capacity and coverage by year — needed to test whether hydropower effects depend on grid connectivity
-- **Road network data**: county-level road density by year — needed to test complementarity hypothesis
-- **Flood event records**: historical flood damage data by county — needed to identify flood control channel
-- **Resettlement records**: number of people displaced per dam, where available — needed for cost-side calculation
-- **Fishery output data**: county-level freshwater fishery production — one measurable ecological cost
+### Potential Additional Data to Collect
+- **Dam construction costs**: search infrastructure procurement databases, audit reports, local government report, and World Bank project documents for a subsample. Target large dams post-2000 where disclosure is better
+- **Government procurement data**: follow-up investments in dams (maintenance, upgrades, renewals)
+- **Electricity grid data and Road network data**: provincial grid capacity, county-level road density — needed for infrastructure complementarity story
 - **Upstream/downstream county assignment**: construct using river network + dam location (key spatial variable for mechanism identification)
 
-### Descriptive Statistics to Produce
-- Maps: spatial distribution of dams by type, size, and decade of construction; overlay with firm locations, river networks, county boundaries
-- Figures: bar charts of dam construction by year, type, province; histogram of dam sizes; event study of firm outcomes around dam construction
-- Tables: summary statistics (mean, median, min, max, std, p25, p75) for all key variables, separately for treated and control counties pre-treatment
+### Descriptive Statistics to Produce (Zhenglin)
+- Maps: spatial distribution of dams by type, size, and year of construction; overlay with river networks and county boundaries
+- Figures: bar charts of dam construction by year, type, province; histogram of dam sizes
+- Tables: summary statistics (mean, median, min, max, std, p25, p75) for all key variables, separately for treated and control counties pre-treatment (Balance Test)
 
 ---
 
@@ -71,11 +66,11 @@
 **Key heterogeneity tests**:
 - Does the treatment effect vary by dam type? This is the mechanism test
 - Does the treatment effect decline with existing dam stock? This tests decreasing returns
-- Does the treatment effect vary by county's pre-existing electricity access, water scarcity, or road connectivity? This tests the binding constraint hypothesis
+- Does the treatment effect vary by county's pre-existing electricity access, water scarcity, or road connectivity? 
 
 ### 1.2 Upstream/Downstream Spatial Design — Mechanism Identification
 
-*This is the key identification innovation.*
+*Spatial Regression Discontinuity.*
 
 **Design**: for each dam, classify counties as upstream or downstream using river network data. Compare upstream vs. downstream counties of the same dam, before and after construction.
 
@@ -108,7 +103,7 @@
 
 ### 1.4 Firm-Level Analysis
 
-**Design**: for each firm in ASIE, construct a 1/2/5 km buffer and assign treatment based on dam presence/construction within that buffer.
+**Design**: for each firm in ASIE, construct a 1/2/5 km buffer and assign treatment based on dam presence/new construction within that buffer.
 
 **Outcome variables**: firm revenue, TFP, pollution emissions, energy consumption, employment, exit/survival
 
@@ -125,7 +120,7 @@
 
 *Extends the analysis further back in time using coarser data.*
 
-1. **Nighttime lights**: regress Δnighttime light (1998–1992) on Δdams (1998–1992), controlling for pre-period light levels
+1. **Nighttime lights**: regress Δnighttime light (1998–1992) on Δdams (1998–1992)
 2. **Population**: regress Δpopulation (1990–1982) on Δdams (1990–1982) using census data
 3. **Local projections**: for each horizon h = 0, 1, 2, ..., 10, regress Δoutcome(t, t+h) on Δdams(t). Plot the impulse response to trace out the dynamic effect of dam construction — tests whether effects are immediate or build over time, and whether they persist or decay
 
@@ -134,8 +129,7 @@
 *Less causal but important for the welfare and optimality argument.*
 
 - Regress log outcome on log(number of dams) or log(total dam capacity) — tests for decreasing returns in a flexible way
-- Plot the marginal effect of an additional dam against the existing stock — identifies the point at which the marginal benefit falls below marginal cost
-- This is the empirical input into the optimal stopping / welfare calculation
+- Plot the marginal effect of an additional dam against the existing stock
 
 ---
 
@@ -161,7 +155,7 @@
 - Financing cost (interest during construction)
 - Time to completion (to calculate cost overruns)
 
-### 2.2 Indirect and Environmental Costs
+### 2.2 Indirect and Environmental Costs (need more thoughts)
 
 **Costs we can estimate empirically**:
 - Resettlement: number of people displaced × estimated compensation shortfall (from survey literature on resettlement welfare)
@@ -180,7 +174,7 @@
 - Identify which dam types and locations have ratios above and below 1
 - This directly answers: was it socially optimal to build these dams?
 
-### 2.3 Formal Welfare Model
+### 2.3 Formal Welfare Model (need more thoughts)
 
 *The quantitative payoff of the paper.*
 
@@ -206,7 +200,6 @@
 
 - Document the institutional process: who proposes, approves, and finances dam construction in China? How has this changed across planning eras (Maoist, reform, post-2000)?
 - Identify the key decision-makers: central vs. provincial vs. county government; Ministry of Water Resources vs. National Development and Reform Commission; state-owned construction enterprises
-- Map dam construction waves to political cycles: do dam approvals spike around Five-Year Plan transitions or leadership changes?
 
 ### 3.2 Regression Analysis of Dam Placement
 
@@ -253,8 +246,8 @@
 
 Once you have dam-level effects, regress them on dam and location characteristics:
 
-**Geographical / hydrological factors**:
-- Rainfall variability in upstream catchment (CoV of annual rainfall) — tests the reliable water inflow hypothesis
+**Geographical / hydrological factors** (need more thought):
+- Rainfall variability in upstream catchment — tests the reliable water inflow hypothesis
 - River sediment load — tests whether high-sediment rivers produce faster-degrading dams
 - Distance to coast / delta — tests whether downstream ecological costs are higher for dams closer to sensitive coastal ecosystems
 
@@ -267,7 +260,7 @@ Once you have dam-level effects, regress them on dam and location characteristic
 - Road density at time of dam construction — tests road complementarity
 - Grid connectivity at time of dam construction — tests grid complementarity for hydropower
 - Distance to nearest city — tests market access complementarity
-- Number of other dams in the same watershed — tests system-level complementarity vs. congestion
+- Number of other dams in the same watershed — tests complementarity vs. congestion
 
 **Dam characteristics**:
 - Size (larger dams may have larger effects but also larger costs)
@@ -292,7 +285,7 @@ Once you have dam-level effects, regress them on dam and location characteristic
 
 *Connects the empirical findings to the Rust (1987) literature and provides a normative conclusion.*
 
-- Using the dose-response estimates from Question 1.6 and the cost estimates from Question 2, characterize the marginal benefit and marginal cost of an additional dam as a function of the existing stock
+- Using the estimates from Question 1.6 and the cost estimates from Question 2, characterize the marginal benefit and marginal cost of an additional dam as a function of the existing stock
 - Identify the optimal stopping point: the level of dam investment at which marginal benefit equals marginal cost
 - Compare to China's actual investment trajectory: has China overbuilt or underbuilt relative to the optimum?
 - Use government procurement data on dam renewals and upgrades to test whether renewal decisions are consistent with optimal stopping behavior
@@ -328,14 +321,12 @@ Once you have dam-level effects, regress them on dam and location characteristic
 ## Other Random Thoughts — Not To-Do Tasks
 
 1. What model should we have in mind?
-2. What is the cost of dams — financial cost, other environmental costs, other indirect costs?
+2. The cost of dams — financial cost, other environmental costs, other indirect costs?
 3. We might be able to find the follow-up investment for dams (from government procurement data). Then we will see when the government chooses to renew the dam, which somewhat speaks to the Rust (1987) optimal stopping / dynamic discrete choice literature, but placed in an environmental economics context, which is another way to make this paper popular
 4. Dams are a form of government intervention. Why do we need government intervention? Why can the market not solve it? If the benefit-to-cost ratio is larger than 1, then let's say there is a big company that can charge people money and then build a dam. This market would exist if there were no market failure. Of course in the real world there are a lot of things going on, but in this hypothetical thought experiment, what is the market failure that prevents it from happening?
 5. What is the optimal allocation of dams? What drives the optimality? There needs to be some clear tradeoff. This optimality is determined both by spatial optimality and time optimality
 6. How does the government decide to build a dam? There must be a decision rule
 7. Why do we stop building dams? Is it because benefits are smaller than costs, or political concerns, or other things?
-8. Complementarity is currently a small section of Question 4, but is itself an interesting question that might need more attention. It would be good to frame the paper around complementarity, and therefore dam construction can be seen as a big push from one low equilibrium to a high equilibrium (poverty trap story and big push, which is commonly used to justify industrial policy)
-
 
 
 
