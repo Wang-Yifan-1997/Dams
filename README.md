@@ -5,19 +5,19 @@
 ## Data Assembly
 
 ### Core Datasets
-| Dataset | Variables | Coverage | Status |
-|---|---|---|---|
-| Dam registry | Location, year, size, type, function | National + Zhejiang detail | In progress |
-| ASIE firm panel | Revenue, TFP, pollution, energy, industry code, location | 1998–2013 | To obtain |
-| Tax survey / VAT data | Revenue, employment, industry code, location | 2000–2020 | To obtain |
-| NBS county yearbooks | GDP, employment, investment | 1990–2020 | To obtain |
-| Nighttime lights | DMSP-OLS / VIIRS | 1992–present | To obtain |
-| Population census | Population, migration, education | 1982, 1990, 2000, 2010 | To obtain |
-| Water monitor stations | Water flow, water quality | 1990s–present | In progress |
-| 国控断面 | Water quality monitoring | 2000s–present | In progress |
-| River network | HydroSHEDS or national | National | To obtain |
-| Input-output tables | Water intensity, energy intensity by industry | Various years | To obtain |
-| China IO tables | Industry-level factor shares | 1997–2017 | To obtain |
+| Dataset | Variables | Coverage |
+|---|---|---|
+| Dam registry | Location, year, size, type, function | National + Zhejiang detail |
+| ASIE firm panel | Revenue, TFP, pollution, energy, industry code, location | 1998–2013 |
+| Tax survey / VAT data | Revenue, employment, industry code, location | 2000–2020 |
+| NBS county yearbooks | GDP, employment, investment | 1990–2020 |
+| Nighttime lights | DMSP-OLS / VIIRS | 1992–present |
+| Population census | Population, migration, education | 1982, 1990, 2000, 2010 |
+| Water monitor stations | Water flow, water quality | 1990s–present |
+| 国控断面 | Water quality monitoring | 2000s–present |
+| River network | HydroSHEDS or national | National |
+| Input-output tables | Water intensity, energy intensity by industry | Various years |
+| China IO tables | Industry-level factor shares | 1997–2017 |
 
 ### Additional Data to Collect
 - **Dam construction costs**: search infrastructure procurement databases, audit reports, local government gazettes, and World Bank project documents for a subsample. Target large dams post-2000 where disclosure is better
@@ -75,7 +75,7 @@
 
 ### 1.2 Upstream/Downstream Spatial Design — Mechanism Identification
 
-*This is the key identification innovation. For a top-5 editor, the mechanism section needs to be airtight.*
+*This is the key identification innovation.*
 
 **Design**: for each dam, classify counties as upstream or downstream using river network data. Compare upstream vs. downstream counties of the same dam, before and after construction.
 
@@ -93,7 +93,7 @@
 - Water supply dams: water-intensive firm output should increase downstream only
 - Pollution: upstream counties should see higher pollution intensity; downstream lower — or vice versa depending on dilution effect
 
-**Why this matters for a top-5 editor**: the upstream/downstream asymmetry is the cleanest possible falsification test. If you find symmetric effects for water channels, the mechanism is wrong. If you find asymmetric effects for electricity, something else is going on. This design rules out most alternative explanations.
+**Why this matters**: the upstream/downstream asymmetry is the cleanest possible falsification test. If you find symmetric effects for water channels, the mechanism is wrong. If you find asymmetric effects for electricity, something else is going on. This design rules out most alternative explanations.
 
 ### 1.3 Industry Heterogeneity — Pinning Down the Mechanism
 
@@ -104,7 +104,7 @@
 - TFP growth in energy-intensive vs. non-energy-intensive industries near hydropower dams
 - Pollution growth in polluting industries downstream of water supply dams (the core environmental externality)
 
-**What this adds**: this is the micro-foundation of the mechanism. A top-5 editor will want to see that the effects are not just spatially concentrated but industrially concentrated in exactly the way the theory predicts.
+**What this adds**: this is the micro-foundation of the mechanism. We want to see that the effects are not just spatially concentrated but industrially concentrated in exactly the way the theory predicts.
 
 ### 1.4 Firm-Level Analysis
 
@@ -182,7 +182,7 @@
 
 ### 2.3 Formal Welfare Model
 
-*The quantitative payoff of the paper. Required for a top-5 submission.*
+*The quantitative payoff of the paper.*
 
 **Structure**:
 - Three benefit channels: flood protection value, water supply value, electricity value
